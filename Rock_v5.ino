@@ -53,10 +53,8 @@ TinyGPS gps;
 
 int signalQuality = 0 ;   //signal quality  for rockblock
 byte ol_status=0;     //ol status
-bool first;   //first time runing 
 bool screen=0;   // connects OpenLog directly
 bool logger=0;   //logs acceleromter
-static bool gps_write=0;    
 char gps_thresh=0;     // threshold of valid readings
 time_t GPS_timed;       // global gps
 
@@ -176,7 +174,6 @@ void loop() {
 int get_gps(float *latitude, float *longitude)
 {
    myGPS.listen();
-   extern bool gps_write;
    bool newData = false;
    int year;
    byte month, day, hour, minutes, second, hundredths;
@@ -444,7 +441,7 @@ int ol_potbot_parameters(){
           parameters[par_index]=temp;
           par_index ++;
           temp=0;
-          Serial.print("    paramter[");
+          Serial.print("    parameter[");
           Serial.print(par_index-1);
           Serial.print("] :");
           Serial.println(parameters[par_index - 1]);
